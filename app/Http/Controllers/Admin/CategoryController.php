@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Category;
 
 class CategoryController extends Controller
 {
+    protected $validationRule = [
+        "name" => "required|string|max:20|unique:categories,name"
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.categories.create");
     }
 
     /**
@@ -37,7 +41,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation
+        $request->validate($this->validationRule);
+
+        // add data
+        $data = $request->all();
+
+        $newCategory = new Category();
+        $newCategory->name = $data["name"];
+        $newCategory->slug = Str::of($newCategory->name)->slug("-");
+        $newCategory->save();
+
+        // redirect
+        return redirect()->route("categories.index");
     }
 
     /**
