@@ -95,7 +95,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("admin.posts.edit", compact("post"));
+        $categories = Category::all();
+        return view("admin.posts.edit", compact("post", "categories"));
     }
 
     /**
@@ -125,15 +126,15 @@ class PostController extends Controller
             }
 
             $post->slug = $slug;
-
-            $post->content = $data["content"];
-            $post->published = isset($data["published"]);
-            $post->save();
-
-            // redirect
-            return redirect()->route("posts.show", $post->id);
-
         }
+
+        $post->content = $data["content"];
+        $post->published = isset($data["published"]);
+        $post->category_id = $data["category_id"];
+        $post->save();
+
+        // redirect
+        return redirect()->route("posts.show", $post->id);
 
     }
 
