@@ -24,7 +24,7 @@
                         <td>{{$category->name}}</td>
                         <td>{{$category->slug}}</td>
                         <td>
-                            <a href="{{route('categories.show', $category->id)}}"><button type="button" class="btn btn-info">Info</button></a>
+                            <a href="{{route('categories.show', $category->id)}}"><button type="button" class="btn btn-info">Posts</button></a>
                             <a href="{{route('categories.edit', $category->id)}}" class=ml-2><button type="button" class="btn btn-primary">Edit</button></a>
                             {{-- modal button --}}
                             <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#deleteModal-{{$category->id}}">Delete</button>
