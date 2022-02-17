@@ -3,15 +3,27 @@
 @section('content')
     <div class="container">
 
+        {{-- title --}}
         <h2 class="text-center mb-5">{{$post->title}}</h2>
+        {{-- content --}}
         <p>{{$post->content}}</p>
+        {{-- Id --}}
         <span class="d-block"><strong>Id:</strong> {{$post->id}}</span>
+        {{-- Slug --}}
         <span class="d-block"><strong>Slug:</strong> {{$post->slug}}</span>
+        {{-- Published --}}
         @if ($post->published == 0)
             <span class="badge badge-secondary">Draft</span>
         @else
             <span class="badge badge-success">Published</span>
         @endif
+        {{-- Category --}}
+        @if ($post->category)
+            <span class="d-block"><strong>Category:</strong> {{$post->category->name}}</span>
+        @else
+            <span class="d-block"><strong>Category:</strong> Null</span>
+        @endif
+        {{-- Creation date --}}
         <span class="d-block mb-5"><strong>Created:</strong> {{$post->created_at}}</span>
 
         <a href="{{route('posts.index')}}"><button type="button" class="btn btn-dark">Posts list</button></a>
