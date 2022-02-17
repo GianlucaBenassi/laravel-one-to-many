@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('posts.index')}}">Posts</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
